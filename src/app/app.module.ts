@@ -4,6 +4,10 @@ import { NgModule } from '@angular/core';
 
 import 'hammerjs';
 import {
+  MdButtonModule,
+  MdIconModule,
+  MdListModule,
+  MdSidenavModule,
   MdToolbarModule
 } from '@angular/material';
 
@@ -20,6 +24,10 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
   ],
   imports: [
     BrowserModule,
+    MdButtonModule,
+    MdIconModule,
+    MdListModule,
+    MdSidenavModule,
     MdToolbarModule,
     AppRoutingModule,
     HardwareSimulatorModule,

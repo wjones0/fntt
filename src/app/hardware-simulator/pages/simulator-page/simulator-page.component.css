@@ -1,4 +1,8 @@
 
+.filename {
+    margin-left: 32px;
+}
+
 md-list-item {
     cursor: pointer;
 }

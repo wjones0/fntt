@@ -1,0 +1,16 @@
+<form #fileForm="ngForm">
+
+  <md-input-container color="accent">
+    <input mdInput name="path" placeholder="Path" [(ngModel)]="file.path" required>
+  </md-input-container>
+
+  <md-input-container color="accent">
+    <input mdInput name="name" placeholder="Name" [(ngModel)]="file.name" required>
+  </md-input-container>
+
+  <div class="actions">
+    <button md-button (click)="close()">Cancel</button>
+    <button md-button [disabled]="fileForm.form.invalid" (click)="create()">Create</button>
+  </div>
+
+</form>

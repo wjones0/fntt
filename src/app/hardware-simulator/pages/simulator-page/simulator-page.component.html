@@ -3,12 +3,15 @@
 
 <md-sidenav-container class="example-container" fullscreen>
 
-  <md-sidenav #sidenav class="example-sidenav">
+  <md-sidenav #sidenav class="example-sidenav" opened="true">
     <md-list>
-      <!--<md-list-item routerLink="/hdwe" (click)="sidenav.toggle()">Hardware Simulator</md-list-item>-->
+      <button md-button (click)="newFile()">New File</button>
+      <div *ngFor="let file of fileList; let i = index;">
+        <md-list-item *ngIf="(i==0)||(fileList[i].path != fileList[i-1].path)">{{file.path}}</md-list-item>
+        <md-list-item class="filename">{{file.name}}</md-list-item>
+      </div>
     </md-list>
   </md-sidenav>
 
-  hi hdwe
 
 </md-sidenav-container>

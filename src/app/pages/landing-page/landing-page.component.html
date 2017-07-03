@@ -1,3 +1,31 @@
-<p>
-  landing-page works!
-</p>
+<md-toolbar color="primary">
+  <button md-button (click)="sidenav.toggle()">
+        <md-icon>menu</md-icon>
+    </button>
+  <button *ngIf="user" md-button [mdMenuTriggerFor]="appMenu">
+        <md-icon color="accent">person</md-icon>
+    </button>
+  <button *ngIf="!user" md-button (click)="login()">
+        <md-icon color="warn">person</md-icon>
+    </button>
+
+</md-toolbar>
+
+<md-menu #appMenu="mdMenu">
+  <button md-menu-item (click)="logout()">
+            <md-icon>power_settings_new</md-icon>
+            Logout
+        </button>
+</md-menu>
+
+<md-sidenav-container class="example-container" fullscreen>
+
+  <md-sidenav #sidenav class="example-sidenav">
+    <md-list>
+      <md-list-item routerLink="/hdwe" (click)="sidenav.toggle()">Hardware Simulator</md-list-item>
+    </md-list>
+  </md-sidenav>
+
+  hi
+
+</md-sidenav-container>

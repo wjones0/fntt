@@ -7,15 +7,17 @@ import {
   MdButtonModule,
   MdIconModule,
   MdListModule,
+  MdMenuModule,
   MdSidenavModule,
   MdToolbarModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-
-import { HardwareSimulatorModule } from './hardware-simulator/hardware-simulator.module';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+
+import { DataModule } from './data/data.module';
+import { HardwareSimulatorModule } from './hardware-simulator/hardware-simulator.module';
 
 @NgModule({
   declarations: [
@@ -24,11 +26,14 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     MdButtonModule,
     MdIconModule,
     MdListModule,
+    MdMenuModule,
     MdSidenavModule,
     MdToolbarModule,
+    DataModule,
     AppRoutingModule,
     HardwareSimulatorModule,
   ],

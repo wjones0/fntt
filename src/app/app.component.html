@@ -1,17 +1,1 @@
-<md-toolbar color="primary">
-    <button md-button (click)="sidenav.toggle()">
-            <md-icon>menu</md-icon>
-        </button>
-</md-toolbar>
-
-<md-sidenav-container class="example-container" fullscreen>
-
-    <md-sidenav #sidenav class="example-sidenav">
-        <md-list>
-            <md-list-item routerLink="/hdwe" (click)="sidenav.toggle()">Hardware Simulator</md-list-item>
-        </md-list>
-    </md-sidenav>
-
-    <router-outlet></router-outlet>
-
-</md-sidenav-container>
+<router-outlet></router-outlet>

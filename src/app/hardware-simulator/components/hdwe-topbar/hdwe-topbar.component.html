@@ -1,0 +1,19 @@
+<md-toolbar color="primary">
+    <button md-button (click)="toggleMenu()">
+        <md-icon>menu</md-icon>
+    </button>
+    <button *ngIf="user" md-button [mdMenuTriggerFor]="appMenu">
+        <md-icon color="accent">person</md-icon>
+    </button>
+    <button *ngIf="!user" md-button (click)="login()">
+        <md-icon color="warn">person</md-icon>
+    </button>
+
+</md-toolbar>
+
+<md-menu #appMenu="mdMenu">
+    <button md-menu-item (click)="logout()">
+            <md-icon>power_settings_new</md-icon>
+            Logout
+        </button>
+</md-menu>

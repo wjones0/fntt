@@ -1,0 +1,6 @@
+<md-list>
+  <div *ngFor="let file of fileList; let i = index;">
+    <md-list-item *ngIf="(i==0)||(fileList[i].path != fileList[i-1].path)">{{file.path}}</md-list-item>
+    <md-list-item class="filename">{{file.name}}</md-list-item>
+  </div>
+</md-list>

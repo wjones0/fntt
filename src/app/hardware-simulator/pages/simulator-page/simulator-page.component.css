@@ -1,12 +1,12 @@
 
-.filename {
-    margin-left: 32px;
-}
-
-md-list-item {
-    cursor: pointer;
+md-sidenav {
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 md-sidenav-container {
     margin-top: 64px;
+    
 }

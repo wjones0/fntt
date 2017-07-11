@@ -42,4 +42,8 @@ export class FileListComponent implements OnInit, OnDestroy {
     this.fileListSub.unsubscribe();
   }
 
+  selectFile(file: File) {
+    this.fileSvc.selectFile(file);
+  }
+
 }

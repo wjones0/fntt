@@ -23,6 +23,10 @@ export class FileAccessService {
   private _fileListSubject: ReplaySubject<File[]> = new ReplaySubject<File[]>();
   public fileList: Observable<File[]> = this._fileListSubject.asObservable();
 
+  private _internalSelectFileSub: Subscription;
+  private _selectedFile: ReplaySubject<File> = new ReplaySubject<File>();
+  public selectedFile: Observable<File> = this._selectedFile.asObservable();
+
   constructor(public afAuth: AngularFireAuth, public db: AngularFireDatabase) {
     this.userSub = afAuth.authState.subscribe((value) => {
       if (value) {
@@ -57,6 +61,16 @@ export class FileAccessService {
   saveFile(file: File) {
     const dbFile = this.db.object(this.filePrefix() + file.path + '/' + file.name);
     dbFile.set(file);
+  }
+
+  selectFile(file: File) {
+    if (this._internalSelectFileSub) {
+      this._internalSelectFileSub.unsubscribe();
+    }
+
+    this._internalSelectFileSub = this.db.object(this.filePrefix() + file.path + '/' + file.name).subscribe((value) => {
+      this._selectedFile.next(value);
+    });
   }
 
 }

@@ -1,0 +1,7 @@
+<div class="vcontainer" *ngIf="file">
+  <h3>{{file.name}}</h3>
+  <md-input-container>
+    <textarea mdInput name="filecontents" rows="20" [(ngModel)]="file.contents"></textarea>
+  </md-input-container>
+  <button md-button (click)="saveFile()">Save</button>
+</div>

@@ -3,10 +3,11 @@
 
 <md-sidenav-container fullscreen>
 
-  <md-sidenav #sidenav opened="true">
+  <md-sidenav #sidenav mode="side" opened="true">
     <button md-button (click)="newFile()">New File</button>
     <fntt-file-list></fntt-file-list>
   </md-sidenav>
 
+  <fntt-file-contents></fntt-file-contents>
 
 </md-sidenav-container>

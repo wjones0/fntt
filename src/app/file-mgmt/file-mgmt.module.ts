@@ -11,6 +11,7 @@ import {
 
 import { ModalNewFileComponent } from './components/modal-new-file/modal-new-file.component';
 import { FileListComponent } from './components/file-list/file-list.component';
+import { FileContentsComponent } from './components/file-contents/file-contents.component';
 
 @NgModule({
   imports: [
@@ -23,14 +24,16 @@ import { FileListComponent } from './components/file-list/file-list.component';
   ],
   declarations: [
     ModalNewFileComponent,
-    FileListComponent
+    FileListComponent,
+    FileContentsComponent
   ],
   entryComponents: [
     ModalNewFileComponent,
   ],
   exports: [
     FileListComponent,
-    ModalNewFileComponent
+    ModalNewFileComponent,
+    FileContentsComponent,
   ]
 })
 export class FileMgmtModule { }

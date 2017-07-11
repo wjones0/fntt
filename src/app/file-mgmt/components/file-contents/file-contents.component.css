@@ -1,0 +1,24 @@
+
+button {
+    margin-bottom: 16px;
+}
+
+h3 {
+    align-self: center;
+    margin-bottom: 0px;
+}
+
+md-input-container {
+    margin: 0px 16px 16px;
+}
+
+.vcontainer {
+    display: flex;
+    flex-direction: column;
+
+    width: 350px;
+    margin: 16px;
+
+    background-color: #424242;
+    border-radius: 1%;
+}

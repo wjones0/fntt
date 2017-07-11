@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -8,12 +9,27 @@ import { FileAccessService } from '../../../data/file-access/file-access.service
 @Component({
   selector: 'fntt-file-list',
   templateUrl: './file-list.component.html',
-  styleUrls: ['./file-list.component.css']
+  styleUrls: ['./file-list.component.css'],
+  animations: [
+    trigger('collapse', [
+      state('in', style({ height: '*' })),
+      transition('void => *', [
+        style({ height: 0 }),
+        animate(250, style({ height: '*' }))
+      ]),
+      transition('* => void', [
+        style({ height: '*' }),
+        animate(250, style({ height: 0 }))
+      ])
+    ])
+  ]
 })
 export class FileListComponent implements OnInit, OnDestroy {
 
   fileList: File[];
   fileListSub: Subscription;
+
+  pathFilter: string = '';
 
   constructor(public fileSvc: FileAccessService) { }
 
@@ -44,6 +60,14 @@ export class FileListComponent implements OnInit, OnDestroy {
 
   selectFile(file: File) {
     this.fileSvc.selectFile(file);
+  }
+
+  selectPath(path: string) {
+    if (this.pathFilter === path) {
+      this.pathFilter = '';
+    } else {
+      this.pathFilter = path;
+    }
   }
 
 }

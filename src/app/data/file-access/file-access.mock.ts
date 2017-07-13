@@ -23,10 +23,10 @@ export class FileAccessMockService {
     private _fileListSubject: ReplaySubject<File[]> = new ReplaySubject<File[]>();
     public fileList: Observable<File[]> = new Observable((observer) => {
         observer.next([
-            { path: '/path1', name: 'file1', contents: '' },
-            { path: '/path1', name: 'file2', contents: '' },
-            { path: '/path2', name: 'file3', contents: '' },
-            { path: '/path1', name: 'file4', contents: '' }
+            { path: '/path1', name: 'file1', contents: '', type: 'hdl' },
+            { path: '/path1', name: 'file2', contents: '', type: 'hdl' },
+            { path: '/path2', name: 'file3', contents: '', type: 'hdl' },
+            { path: '/path1', name: 'file4', contents: '', type: 'hdl' }
         ]);
         observer.complete();
     });
@@ -35,7 +35,7 @@ export class FileAccessMockService {
 
     public selectedFile: Observable<File> = new Observable((observer) => {
         observer.next(
-            { path: '/dir', name: 'file', contents: 'this is some file content' }
+            { path: '/dir', name: 'file', contents: 'this is some file content', type: 'hdl' }
         );
         observer.complete();
     });

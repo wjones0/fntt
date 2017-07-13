@@ -51,7 +51,6 @@ export class FileListComponent implements OnInit, OnDestroy {
         return 0;
       });
     });
-
   }
 
   ngOnDestroy() {

@@ -69,7 +69,8 @@ describe('FileAccessService', () => {
     service.selectFile({
       name: '',
       path: '',
-      contents: ''
+      contents: '',
+      type: ''
     });
 
 

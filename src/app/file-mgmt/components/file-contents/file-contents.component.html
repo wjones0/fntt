@@ -1,5 +1,9 @@
 <div class="vcontainer" *ngIf="file">
-  <h3>{{file.name}}</h3>
+  <div class="header">
+    <div></div>
+    <h3>{{file.name}}</h3>
+    <div class="filetype">{{file.type}}</div>
+  </div>
   <md-input-container>
     <textarea mdInput name="filecontents" rows="20" [(ngModel)]="file.contents"></textarea>
   </md-input-container>

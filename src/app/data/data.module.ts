@@ -7,6 +7,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../../environments/environment';
 
 import { FileAccessService } from './file-access/file-access.service';
+import { FileTypesService } from './file-types/file-types.service';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { FileAccessService } from './file-access/file-access.service';
   ],
   providers: [
     FileAccessService,
+    FileTypesService
   ]
 })
 export class DataModule { }

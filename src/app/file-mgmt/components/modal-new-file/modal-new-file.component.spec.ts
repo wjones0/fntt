@@ -6,11 +6,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MdDialogRef,
   MdInputModule,
+  MdSelectModule,
 } from '@angular/material';
 
 import { click } from '../../../testing/click';
 import { FileAccessService } from '../../../data/file-access/file-access.service';
 import { FileAccessMockService } from '../../../data/file-access/file-access.mock';
+import { FileTypesService } from '../../../data/file-types/file-types.service';
+import { FileTypesMockService } from '../../../data/file-types/file-types.mock';
 
 import { ModalNewFileComponent } from './modal-new-file.component';
 
@@ -24,10 +27,12 @@ describe('ModalNewFileComponent', () => {
         BrowserAnimationsModule,
         FormsModule,
         MdInputModule,
+        MdSelectModule,
       ],
       declarations: [ModalNewFileComponent],
       providers: [
         { provide: FileAccessService, useClass: FileAccessMockService },
+        { provide: FileTypesService, useClass: FileTypesMockService },
         { provide: MdDialogRef, useClass: MDDialogMock },
       ]
     })
@@ -123,7 +128,8 @@ describe('ModalNewFileComponent', () => {
     comp.file = {
       name: 'name',
       path: 'path',
-      contents: ''
+      contents: '',
+      type: 'hdl'
     }
 
     comp.create();
@@ -147,7 +153,8 @@ describe('ModalNewFileComponent', () => {
     comp.file = {
       name: 'name',
       path: '/path',
-      contents: ''
+      contents: '',
+      type: 'hdl'
     }
 
     comp.create();
@@ -171,7 +178,8 @@ describe('ModalNewFileComponent', () => {
     comp.file = {
       name: 'name',
       path: '/path/',
-      contents: ''
+      contents: '',
+      type: 'hdl'
     }
 
     comp.create();
@@ -195,7 +203,8 @@ describe('ModalNewFileComponent', () => {
     comp.file = {
       name: 'name',
       path: '/path',
-      contents: ''
+      contents: '',
+      type: 'hdl'
     }
 
     comp.create();
@@ -205,6 +214,16 @@ describe('ModalNewFileComponent', () => {
     });
 
   });
+
+  //testing overlay giving me trouble than I want to do at this time
+  // it('should let you choose a file type', () => {
+  //   let sel = fixture.debugElement.query(By.css('md-select'));
+  //   click(sel.nativeElement);
+  //   fixture.detectChanges();
+
+  //   let des = fixture.debugElement.queryAll(By.css('md-option'));
+  //   expect(des[0].nativeElement.innerHTML).toContain('HDL');
+  // });
 
 });
 

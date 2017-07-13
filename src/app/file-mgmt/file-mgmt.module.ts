@@ -7,6 +7,7 @@ import {
   MdDialogModule,
   MdInputModule,
   MdListModule,
+  MdSelectModule,
 } from '@angular/material';
 
 import { ModalNewFileComponent } from './components/modal-new-file/modal-new-file.component';
@@ -21,6 +22,7 @@ import { FileContentsComponent } from './components/file-contents/file-contents.
     MdDialogModule,
     MdInputModule,
     MdListModule,
+    MdSelectModule,
   ],
   declarations: [
     ModalNewFileComponent,

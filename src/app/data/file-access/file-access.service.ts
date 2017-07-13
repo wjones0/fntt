@@ -54,7 +54,8 @@ export class FileAccessService {
     this.saveFile(file);
     this._internalFileList.push({
       path: file.path,
-      name: file.name
+      name: file.name,
+      type: file.type
     });
   }
 

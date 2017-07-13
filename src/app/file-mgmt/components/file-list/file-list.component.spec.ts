@@ -101,5 +101,19 @@ describe('FileListComponent', () => {
     });
   });
 
+  it('should show you the file type', () => {
+    let des = fixture.debugElement.queryAll(By.css('md-list-item'));
+
+    // open first directory
+    click(des[0]);
+
+    fixture.detectChanges();
+
+    let files = fixture.debugElement.queryAll(By.css('md-list-item'));
+
+    // files[0] will be the path
+    expect(files[1].nativeElement.innerHTML).toContain('hdl');
+  });
+
 });
 

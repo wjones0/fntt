@@ -8,6 +8,12 @@
     <input mdInput name="name" placeholder="Name" [(ngModel)]="file.name" required>
   </md-input-container>
 
+  <md-select name="filetype" placeholder="File Type" [(ngModel)]="file.type">
+    <md-option *ngFor="let t of fileTypes" [value]="t">
+      {{ t }}
+    </md-option>
+  </md-select>
+
   <div class="actions">
     <button md-button (click)="close()">Cancel</button>
     <button md-button [disabled]="fileForm.form.invalid" (click)="create()">Create</button>

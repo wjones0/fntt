@@ -7,3 +7,7 @@
 .path {
     cursor: pointer;
 }
+
+.spaceme {
+    margin-right: 32px;
+}

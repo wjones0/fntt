@@ -35,13 +35,17 @@ export class FileAccessService {
     });
   }
 
-  private filePrefix() {
+  private appPrefix(): string {
     return '/' + this.user.uid + '/' + this.appName;
+  }
+
+  private fullFilePath(file: File): string {
+    return this.appPrefix() + file.path + '/' + file.name + '-' + file.type;
   }
 
   setApp(appName: string) {
     this.appName = appName;
-    this._internalFileList = this.db.list(this.filePrefix() + '/filelist');
+    this._internalFileList = this.db.list(this.appPrefix() + '/filelist');
 
     if (!this._internalFileSub) {
       this._internalFileSub = this._internalFileList.subscribe((value) => {
@@ -60,7 +64,7 @@ export class FileAccessService {
   }
 
   saveFile(file: File) {
-    const dbFile = this.db.object(this.filePrefix() + file.path + '/' + file.name);
+    const dbFile = this.db.object(this.fullFilePath(file));
     dbFile.set(file);
   }
 
@@ -69,7 +73,7 @@ export class FileAccessService {
       this._internalSelectFileSub.unsubscribe();
     }
 
-    this._internalSelectFileSub = this.db.object(this.filePrefix() + file.path + '/' + file.name).subscribe((value) => {
+    this._internalSelectFileSub = this.db.object(this.fullFilePath(file)).subscribe((value) => {
       this._selectedFile.next(value);
     });
   }

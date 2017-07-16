@@ -2,9 +2,15 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+
+    margin-top: 16px;
 }
 
 form {
     display: flex;
     flex-direction: column;
+}
+
+md-select {
+    margin-top: 16px;
 }

@@ -13,6 +13,7 @@ import {
 import { ModalNewFileComponent } from './components/modal-new-file/modal-new-file.component';
 import { FileListComponent } from './components/file-list/file-list.component';
 import { FileContentsComponent } from './components/file-contents/file-contents.component';
+import { ModalProjectTemplatesComponent } from './components/modal-project-templates/modal-project-templates.component';
 
 @NgModule({
   imports: [
@@ -27,15 +28,18 @@ import { FileContentsComponent } from './components/file-contents/file-contents.
   declarations: [
     ModalNewFileComponent,
     FileListComponent,
-    FileContentsComponent
+    FileContentsComponent,
+    ModalProjectTemplatesComponent
   ],
   entryComponents: [
     ModalNewFileComponent,
+    ModalProjectTemplatesComponent,
   ],
   exports: [
     FileListComponent,
     ModalNewFileComponent,
     FileContentsComponent,
+    ModalProjectTemplatesComponent,
   ]
 })
 export class FileMgmtModule { }

@@ -1,0 +1,12 @@
+.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    margin-top: 16px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+}

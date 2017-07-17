@@ -10,6 +10,7 @@ import { File } from '../../../data/models/file';
 import { FileAccessService } from '../../../data/file-access/file-access.service';
 
 import { ModalNewFileComponent } from '../../../file-mgmt/components/modal-new-file/modal-new-file.component';
+import { ModalProjectTemplatesComponent } from '../../../file-mgmt/components/modal-project-templates/modal-project-templates.component';
 
 @Component({
   selector: 'app-simulator-page',
@@ -36,6 +37,14 @@ export class SimulatorPageComponent implements OnInit, OnDestroy {
 
   newFile() {
     let dialogRef = this.dialog.open(ModalNewFileComponent, {
+      width: '75%',
+      disableClose: false,
+      data: null
+    });
+  }
+
+  copyProjTemplate() {
+    let dialogRef = this.dialog.open(ModalProjectTemplatesComponent, {
       width: '75%',
       disableClose: false,
       data: null

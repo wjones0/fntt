@@ -8,6 +8,7 @@ import { environment } from '../../environments/environment';
 
 import { FileAccessService } from './file-access/file-access.service';
 import { FileTypesService } from './file-types/file-types.service';
+import { ProjectTemplatesService } from './project-templates/project-templates.service';
 
 @NgModule({
   imports: [
@@ -17,13 +18,11 @@ import { FileTypesService } from './file-types/file-types.service';
     AngularFireAuthModule,
   ],
   exports: [
-    AngularFireModule,
-    AngularFireAuthModule,
-    AngularFireDatabaseModule,
   ],
   providers: [
     FileAccessService,
-    FileTypesService
+    FileTypesService,
+    ProjectTemplatesService,
   ]
 })
 export class DataModule { }

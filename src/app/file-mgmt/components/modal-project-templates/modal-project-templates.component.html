@@ -1,0 +1,12 @@
+<div class="content">
+  <md-select name="templates" placeholder="Project Templates" [(ngModel)]="selectedTemplate">
+    <md-option *ngFor="let t of projects; let i = index" [value]="t">
+      {{ t.name }}
+    </md-option>
+  </md-select>
+
+  <div class="actions">
+    <button md-button (click)="close()">Cancel</button>
+    <button md-button (click)="copy()">Copy</button>
+  </div>
+</div>

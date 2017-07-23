@@ -12,9 +12,10 @@ export class TokenizerHdlService {
   tokenize_noComments(text: string): Token[] {
     let tokenRules = {
       keyword: /BUILTIN|CHIP|IN|OUT|PARTS:|CLOCKED/,
-      symbol: /{|}|\(|\)|;|,|=/,
+      symbol: /{|}|\(|\)|;|,|=|\[|\]|\.\./,
       whitespace: /\s+/,
-      word: /[\w:\[\]\.]+/
+      pin: /\d+/,
+      word: /[\w]+/
     };
 
     return this._tokenSvc.tokenize(text, tokenRules, 'unknown');

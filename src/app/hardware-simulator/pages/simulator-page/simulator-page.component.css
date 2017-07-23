@@ -1,3 +1,22 @@
+.errorText {
+    color: red;
+    margin-left: 16px;
+    margin-right: 16px;
+
+    width: 350px;
+}
+
+.file-edit-area {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+
+}
+
+.file-edit-area > button {
+    margin-left: 16px;
+    margin-right: 16px;
+}
 
 md-sidenav {
     padding-top: 16px;
@@ -11,5 +30,6 @@ md-sidenav {
 
 md-sidenav-container {
     margin-top: 64px;
-    
+    display: flex;
+    flex-direction: row;
 }

@@ -12,6 +12,7 @@ import {
   MdToolbarModule,
 } from '@angular/material';
 
+import { CompilerModule } from '../compiler/compiler.module';
 import { DataModule } from '../data/data.module';
 import { FileMgmtModule } from '../file-mgmt/file-mgmt.module';
 import { HardwareSimulatorRoutingModule } from './hardware-simulator-routing.module';
@@ -30,8 +31,9 @@ import { HdweTopbarComponent } from './components/hdwe-topbar/hdwe-topbar.compon
     MdSidenavModule,
     MdToolbarModule,
     HardwareSimulatorRoutingModule,
-    FileMgmtModule,
+    CompilerModule,
     DataModule,
+    FileMgmtModule,
   ],
   declarations: [
     SimulatorPageComponent,

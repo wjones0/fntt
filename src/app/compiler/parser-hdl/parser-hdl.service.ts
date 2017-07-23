@@ -31,6 +31,11 @@ export class ParserHdlService {
     }
   }
 
+  loadTokens(tokens: Token[]) {
+    this._tokens = tokens;
+    this._tokenPos = 0;
+  }
+
   // parses the top level chip definition
   parseChip(): parseNode {
     let ret: parseNode = {

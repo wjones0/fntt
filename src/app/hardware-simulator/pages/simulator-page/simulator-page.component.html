@@ -9,6 +9,10 @@
     <fntt-file-list></fntt-file-list>
   </md-sidenav>
 
-  <fntt-file-contents></fntt-file-contents>
+  <div class="file-edit-area" *ngIf="selectedFile">
+    <fntt-file-contents></fntt-file-contents>
+    <button md-raised-button (click)="loadChip()">Load Chip</button>
+    <p class="errorText" *ngIf="errorText">{{errorText}}</p>
+  </div>
 
 </md-sidenav-container>

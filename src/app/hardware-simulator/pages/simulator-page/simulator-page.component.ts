@@ -8,10 +8,12 @@ import * as firebase from 'firebase/app';
 
 import { File } from '../../../data/models/file';
 import { parseNode } from '../../../compiler/models/parseNode';
+import { Chip } from '../../models/chip';
 
 import { FileAccessService } from '../../../data/file-access/file-access.service';
 import { TokenizerHdlService } from '../../../compiler/tokenizer-hdl/tokenizer-hdl.service';
 import { ParserHdlService } from '../../../compiler/parser-hdl/parser-hdl.service';
+import { ChipBuilderService } from '../../services/chip-builder/chip-builder.service';
 
 import { ModalNewFileComponent } from '../../../file-mgmt/components/modal-new-file/modal-new-file.component';
 import { ModalProjectTemplatesComponent } from '../../../file-mgmt/components/modal-project-templates/modal-project-templates.component';
@@ -28,10 +30,11 @@ export class SimulatorPageComponent implements OnInit, OnDestroy {
 
   selectedFile: File;
   parseTree: parseNode;
+  currentChip: Chip;
 
   errorText: string;
 
-  constructor(public fileSvc: FileAccessService, private _tokenizer: TokenizerHdlService, private _parser: ParserHdlService, public dialog: MdDialog, public afAuth: AngularFireAuth) {
+  constructor(private _chipBuilder: ChipBuilderService, public fileSvc: FileAccessService, private _tokenizer: TokenizerHdlService, private _parser: ParserHdlService, public dialog: MdDialog, public afAuth: AngularFireAuth) {
     this.userSub = afAuth.authState.subscribe((value) => {
       this.fileSvc.setApp('hdwe');
     });
@@ -70,9 +73,21 @@ export class SimulatorPageComponent implements OnInit, OnDestroy {
     try {
       this._parser.loadTokens(this._tokenizer.tokenize(this.selectedFile.contents));
       this.parseTree = this._parser.parseChip();
+      this.currentChip = this._chipBuilder.buildChip(this.parseTree);
     } catch (error) {
       this.errorText = error.message;
     }
+  }
+
+  changeInput(name: string, val: string) {
+    let newVal = [];
+
+    var strArray = val.split(',');
+    for (let s of strArray) {
+      newVal.push(+s);
+    }
+
+    this.currentChip.inputs[name].next(new Uint8Array(newVal));
   }
 
 }

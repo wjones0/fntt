@@ -4,6 +4,10 @@
     flex-direction: column;
 }
 
+div > md-card {
+    margin-top: 16px;
+}
+
 .errorText {
     color: red;
     margin-left: 16px;

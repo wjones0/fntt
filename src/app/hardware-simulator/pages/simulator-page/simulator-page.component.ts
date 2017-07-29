@@ -48,6 +48,10 @@ export class SimulatorPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.userSub.unsubscribe();
+    if (this.currentChip) {
+      this.currentChip.disassemble();
+    }
+
   }
 
   newFile() {
@@ -73,6 +77,9 @@ export class SimulatorPageComponent implements OnInit, OnDestroy {
     try {
       this._parser.loadTokens(this._tokenizer.tokenize(this.selectedFile.contents));
       this.parseTree = this._parser.parseChip();
+      if (this.currentChip) {
+        this.currentChip.disassemble();
+      }
       this.currentChip = this._chipBuilder.buildChip(this.parseTree);
     } catch (error) {
       this.errorText = error.message;
@@ -82,8 +89,7 @@ export class SimulatorPageComponent implements OnInit, OnDestroy {
   changeInput(name: string, val: string) {
     let newVal = [];
 
-    var strArray = val.split(',');
-    for (let s of strArray) {
+    for (let s of val) {
       newVal.push(+s);
     }
 

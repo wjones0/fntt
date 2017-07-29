@@ -17,21 +17,22 @@
     </div>
 
     <div *ngIf="currentChip">
-      <div class="columns">
-        <h3>Inputs</h3>
+      <md-card class="columns">
+        <md-card-title>Inputs</md-card-title>
         <md-input-container *ngFor="let i of currentChip.inputNames">
-          <input mdInput name="i" [ngModel]="currentChip.inputs[i].value" #in (change)="changeInput(i, in.value)" placeholder="{{i}}">
+          <input mdInput name="i" [ngModel]="(currentChip.inputs[i].value)?.join('')" #in (change)="changeInput(i, in.value)" placeholder="{{i}}">
         </md-input-container>
-      </div>
+      </md-card>
 
-      <h3>Outputs</h3>
-      <div *ngFor="let outputName of currentChip.outputNames">
-        <h6>{{outputName}}</h6>
-        <div *ngFor="let output of currentChip.outputs[outputName] | async">
-          {{output}}
-        </div>
-      </div>
-
+      <md-card class="columns">
+        <md-card-title>Outputs</md-card-title>
+        <md-list dense *ngFor="let outputName of currentChip.outputNames">
+          <h3 md-subheader>{{outputName}}</h3>
+          <md-list-item>
+            {{(currentChip.outputs[outputName] | async)?.join('')}}
+          </md-list-item>
+        </md-list>
+      </md-card>
     </div>
   </div>
 

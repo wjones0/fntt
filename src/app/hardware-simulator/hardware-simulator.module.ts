@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import {
   MdButtonModule,
+  MdCardModule,
   MdDialogModule,
   MdIconModule,
   MdInputModule,
@@ -26,6 +27,7 @@ import { ChipBuilderService } from './services/chip-builder/chip-builder.service
     CommonModule,
     FormsModule,
     MdButtonModule,
+    MdCardModule,
     MdDialogModule,
     MdIconModule,
     MdInputModule,

@@ -1,14 +1,22 @@
+import { Subscription } from 'rxjs/Subscription';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/combineLatest';
 
 import { Chip } from './chip';
 
-export class NandChip extends Chip {
+export class NandChip implements Chip {
+    public inputs: BehaviorSubject<Uint8Array>[] = [];
+    protected _inputs: Observable<Uint8Array>[] = [];
+    public inputNames: string[] = [];
+
+    protected _outputs: BehaviorSubject<Uint8Array>[] = [];
+    public outputs: Observable<Uint8Array>[] = [];
+    public outputNames: string[] = [];
+
+    protected subscriptions: Subscription[] = [];
 
     constructor() {
-        super();
-
         // set out input names
         this.inputNames.push("a");
         this.inputNames.push("b");
@@ -41,4 +49,12 @@ export class NandChip extends Chip {
             }
         }));
     }
+
+    disassemble() {
+        for (let s of this.subscriptions) {
+            s.unsubscribe();
+        }
+    }
+
+
 }

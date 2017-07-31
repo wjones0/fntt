@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { parseNode } from '../../../compiler/models/parseNode';
+import { CustomChip } from '../../models/custom-chip';
 import { Chip } from '../../models/chip';
-import { NandChip } from '../../models/nand-chip';
 
 @Injectable()
 export class ChipBuilderService {
@@ -11,8 +11,7 @@ export class ChipBuilderService {
 
   buildChip(node: parseNode): Chip {
 
-    return new NandChip();
-    // return new Chip(node);
+    return new CustomChip(node);
   }
 
 }

@@ -79,3 +79,93 @@ describe('Chip Style 1 (not)', () => {
     });
 
 });
+
+describe('Chip Style 1 (and)', () => {
+    beforeEach(() => {
+        let tokenizer = new TokenizerHdlService(new TokenizerGenericService());
+        let parser = new ParserHdlService();
+
+        let textfile = `// This file is part of www.nand2tetris.org\n// and the book \"The Elements of Computing Systems\"\n// by Nisan and Schocken, MIT Press.\n// File name: projects/01/And.hdl\n\n/**\n * And gate: \n * out = 1 if (a == 1 and b == 1)\n *       0 otherwise\n */\n\nCHIP And {\n    IN a, b;\n    OUT out;\n\n    PARTS:\n     Nand(a=a, b=b, out=aNandb);\n     Not(in=aNandb, out=out);\n}\n`;
+
+        parser.loadTokens(tokenizer.tokenize(textfile));
+        let parseTree = parser.parseChip();
+
+        chip = new CustomChip(parseTree);
+    });
+
+    it('should be created', () => {
+        expect(chip).toBeTruthy();
+    });
+
+    it('should have 2 inputs named (a, b)', () => {
+        expect(chip.inputNames[0]).toBe('a');
+        expect(chip.inputNames[1]).toBe('b');
+    });
+
+    it('should have subjects for the inputs', () => {
+        try {
+            chip.inputs["a"].next(new Uint8Array([0]));
+            chip.inputs["b"].next(new Uint8Array([0]));
+        } catch (err) {
+            expect(false).toBeTruthy('unable to set inputs');
+        }
+    });
+
+    it('should have a single output named (out)', () => {
+        expect(chip.outputNames[0]).toBe('out');
+    });
+
+    it('should have an observable for the output', () => {
+        try {
+            chip.outputs["out"].subscribe((val) => {
+                expect(val).toBeDefined();
+            });
+        } catch (err) {
+            expect(false).toBeTruthy('unable to subscribe to out');
+        }
+    });
+
+    it('should start off with an output of 1', () => {
+        chip.outputs["out"].subscribe((val) => {
+            expect(+val).toBe(1);
+        });
+    });
+
+    // // unsure if these below will work with the async nature of the subs....seems to work but i feel like this is wrong.
+    it('should emit a 0 when a is 0 and b is 0', () => {
+        chip.inputs["a"].next(new Uint8Array([0]));
+        chip.inputs["b"].next(new Uint8Array([0]));
+
+        chip.outputs["out"].subscribe((val) => {
+            expect(+val).toBe(0);
+        });
+    });
+
+    it('should emit a 0 when a is 1 and b is 0', () => {
+        chip.inputs["a"].next(new Uint8Array([1]));
+        chip.inputs["b"].next(new Uint8Array([0]));
+
+        chip.outputs["out"].subscribe((val) => {
+            expect(+val).toBe(0);
+        });
+    });
+
+    it('should emit a 0 when a is 0 and b is 1', () => {
+        chip.inputs["a"].next(new Uint8Array([0]));
+        chip.inputs["b"].next(new Uint8Array([1]));
+
+        chip.outputs["out"].subscribe((val) => {
+            expect(+val).toBe(0);
+        });
+    });
+
+    it('should emit a 1 when a is 1 and b is 1', () => {
+        chip.inputs["a"].next(new Uint8Array([1]));
+        chip.inputs["b"].next(new Uint8Array([1]));
+
+        chip.outputs["out"].subscribe((val) => {
+            expect(+val).toBe(1);
+        });
+    });
+
+});
